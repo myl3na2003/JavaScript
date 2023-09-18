@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const estudantes = [];
+    
+    function cadastrarEstudante(nome, idade) {
+      estudantes.push({ nome, idade });
+    }
+    
+    // exibição da lista de estudantes
+    function exibirListaDeEstudantes() {
+      console.log("Lista de Estudantes:");
+      estudantes.forEach((estudante, index) => {
+        console.log(`Estudante ${index + 1}: Nome - ${estudante.nome}, Idade - ${estudante.idade}`);
+      });
+    }
+    
+    // Função principal
+    function principal() {
+      let contador = 0;
+    
+      console.log("Bem-vindo ao nosso sistema de cadastro!");
+    
+      // Loop para cadastrar estudantes
+      while (true) {
+        const nome = prompt("Digite o nome do estudante (ou 'PARE' para sair):");
+        
+        if (nome.toUpperCase() === "PARE") {
+          break; 
+        }
+    
+        const idade = prompt("Digite a idade do estudante:");
+    
+        cadastrarEstudante(nome, idade);
+        contador++;
+      }
+    
+      // Exibe a quantidade de estudantes cadastrados
+      console.log(`Total de estudantes cadastrados: ${contador}`);
+    
+      exibirListaDeEstudantes();
+    }
+    principal();
+    
+    </script>
+</body>
+</html>

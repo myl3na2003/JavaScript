@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Compras</h1>
+    <p>Frutas disponíveis:</p>
+    <ul id="frutas">
+        <li>Maçã</li>
+        <li>Banana</li>
+        <li>Pera</li>
+        <li>Uva</li>
+        <li>Laranja</li>
+    </ul>
+    <p>Digite o nome de uma fruta para remover da lista:</p>
+    <input type="text" id="frutaInput">
+    <button onclick="removerFruta()">Remover</button>
+    <p id="output"></p>
+
+    <script>
+        // Array de frutas
+        const frutas = ["Maçã", "Banana", "Pera", "Uva", "Laranja"];
+        const outputElement = document.getElementById("output");
+
+        function atualizarLista() {
+            const listaElement = document.getElementById("frutas");
+            listaElement.innerHTML = "";
+            for (const fruta of frutas) {
+                const listItem = document.createElement("li");
+                listItem.textContent = fruta;
+                listaElement.appendChild(listItem);
+            }
+        }
+
+        function removerFruta() {
+            const frutaInput = document.getElementById("frutaInput").value;
+            const index = frutas.indexOf(frutaInput);
+            
+            if (index !== -1) {
+                frutas.splice(index, 1);
+                atualizarLista();
+                outputElement.textContent = `Fruta "${frutaInput}" foi retirada da lista.`;
+            } else {
+                outputElement.textContent = `Fruta "${frutaInput}" indisponível no nosso mercado.`;
+            }
+
+            if (frutas.length === 0) {
+                outputElement.textContent = "Lista de compras finalizada.";
+            }
+
+            document.getElementById("frutaInput").value = "";
+        }
+    </script>
+</body>
+</html>
